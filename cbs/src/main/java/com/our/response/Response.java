@@ -1,9 +1,10 @@
-package com.our.model.response;
+package com.our.response;
 
 public class Response {
 
 	private String statusCode;
 	private String errorCode;
+	private String errorDesc;
 
 	public String getStatusCode() {
 		return statusCode;
@@ -21,9 +22,17 @@ public class Response {
 		this.errorCode = errorCode;
 	}
 
+	public String getErrorDesc() {
+		return errorDesc;
+	}
+
+	public void setErrorDesc(String errorDesc) {
+		this.errorDesc = errorDesc;
+	}
+
 	@Override
 	public String toString() {
-		return "Response [statusCode=" + statusCode + ", errorCode=" + errorCode + "]";
+		return "Response [statusCode=" + statusCode + ", errorCode=" + errorCode + ", errorDesc=" + errorDesc + "]";
 	}
 
 }
