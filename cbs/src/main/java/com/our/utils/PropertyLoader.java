@@ -10,6 +10,7 @@ import java.util.Properties;
 public class PropertyLoader {
 	private static PropertyLoader loader;
 	private Map<String, String> propertyMap;
+	private final Properties configproperties = loadPropertyFile(Constants.configFile);
 	private final Properties dBproperties = loadPropertyFile(Constants.DBconfigFile);
 
 	private PropertyLoader() {
@@ -24,6 +25,9 @@ public class PropertyLoader {
 			propertyMap.put(Constants.MySQLdbPassword, getDBConfigProps(Constants.MySQLdbPassword));
 			propertyMap.put(Constants.MySQLdbURL, getDBConfigProps(Constants.MySQLdbURL));
 			propertyMap.put(Constants.MySQLdbdriver, getDBConfigProps(Constants.MySQLdbdriver));
+
+			propertyMap.put(Constants.POOL_ACCOUNT, getConfigProps(Constants.POOL_ACCOUNT));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -32,6 +36,12 @@ public class PropertyLoader {
 	public String getDBConfigProps(String key) {
 		String property = "";
 		property = dBproperties.getProperty(key);
+		return property;
+	}
+
+	public String getConfigProps(String key) {
+		String property = "";
+		property = configproperties.getProperty(key);
 		return property;
 	}
 
