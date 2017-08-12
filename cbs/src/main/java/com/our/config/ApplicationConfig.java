@@ -13,6 +13,10 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.stereotype.Component;
 
+import com.our.model.ATM;
+import com.our.model.Account;
+import com.our.model.Customer;
+import com.our.model.FundTransfer;
 import com.our.utils.Constants;
 import com.our.utils.PropertyLoader;
 
@@ -40,7 +44,7 @@ public class ApplicationConfig {
 		return h2dataSource;
 	}
 
-	@Bean(name = "MySQLdataSource")
+	//@Bean(name = "MySQLdataSource")
 	public DataSource getMysqlDataSource() {
 		DriverManagerDataSource mySQLdataSource = new DriverManagerDataSource();
 		mySQLdataSource.setUrl(MySQLURL);
@@ -64,6 +68,11 @@ public class ApplicationConfig {
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
+		sessionBuilder.addAnnotatedClass(Account.class);
+		sessionBuilder.addAnnotatedClass(ATM.class);
+		sessionBuilder.addAnnotatedClass(Customer.class);
+		sessionBuilder.addAnnotatedClass(Error.class);
+		sessionBuilder.addAnnotatedClass(FundTransfer.class);
 		return sessionBuilder.buildSessionFactory();
 	}
 

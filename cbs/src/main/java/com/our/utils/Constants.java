@@ -3,6 +3,8 @@ package com.our.utils;
 public class Constants {
 
 	public static final String RESP_SUCCESS = "000";
+	public static final String STATUS_SUCCESS = "1";
+	public static final String STATUS_FAILURE = "-1";
 
 	// Database
 	public static final String H2dbURL = "H2dbURL";
@@ -20,11 +22,12 @@ public class Constants {
 
 	// Extras
 	public static final String configFile = "config.properties";
-	public static final String DBconfigFile = "DBconfigFile.properties";
+	public static final String DBconfigFile = "DBconfig.properties";
 
 	// Errors
 	public class Errors {
 		public static final String RESP_GENRIC_FAILURE = "999";
+
 		public static final String ACCOUNT_DORMANT = "001";
 		public static final String ACCOUNT_FREEZED = "002";
 		public static final String ACCOUNT_WITH_MULTIPLE_NAMES = "003";
