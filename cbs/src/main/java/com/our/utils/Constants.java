@@ -11,11 +11,14 @@ public class Constants {
 	public static final String H2dbPassword = "H2dbPassword";
 	public static final String H2dbUsername = "H2dbUsername";
 	public static final String H2dbdriver = "H2dbdriver";
+	public static final String H2Dialect = "H2Dialect";
 
-	public static final String MySQLdbURL = "H2dbURL";
-	public static final String MySQLdbPassword = "H2dbPassword";
-	public static final String MySQLdbUsername = "H2dbUsername";
-	public static final String MySQLdbdriver = "H2dbdriver";
+	public static final String MySQLdbURL = "MySQLdbURL";
+	public static final String MySQLdbPassword = "MySQLdbPassword";
+	public static final String MySQLdbUsername = "MySQLdbUsername";
+	public static final String MySQLdbdriver = "MySQLdbdriver";
+	public static final String MySQLDialect = "MySQLDialect";
+	public static final String db = "db";
 
 	// Important
 	public static final String POOL_ACCOUNT = "poolAccount";
@@ -37,6 +40,7 @@ public class Constants {
 		public static final String ACCOUNT_CLOSED = "007";
 		public static final String ACCOUNT_NOT_FOUND = "008";
 		public static final String ACCOUNT_LIMIT_EXCEEDED = "009";
+		public static final String ACCOUNT_NOT_EXIST = "010";
 
 	}
 

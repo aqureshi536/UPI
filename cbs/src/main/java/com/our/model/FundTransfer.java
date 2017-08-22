@@ -1,6 +1,12 @@
 package com.our.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class FundTransfer {
+	@Id
 	private String fundTransferId;
 	private long amount;
 	private String narration;
@@ -9,6 +15,8 @@ public class FundTransfer {
 	private String rrn;
 	private String extras;
 	private String accountNo;
+	@ManyToOne
+	private Account account;
 
 	public String getFundTransferId() {
 		return fundTransferId;
@@ -72,6 +80,14 @@ public class FundTransfer {
 
 	public void setAccountNo(String accountNo) {
 		this.accountNo = accountNo;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	@Override

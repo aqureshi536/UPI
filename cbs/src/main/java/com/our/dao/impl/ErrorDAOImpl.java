@@ -19,7 +19,7 @@ public class ErrorDAOImpl implements ErrorDAO {
 	@Transactional
 	public Error getErrorCode(String status) {
 		Error error = new Error();
-		String hql = "from ErrorCode where status=:status";
+		String hql = "from Error where status=:status";
 		Query<Error> query = sessionFactory.getCurrentSession().createQuery(hql).setParameter("status", status);
 		error = query.getSingleResult();
 		return error;

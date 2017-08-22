@@ -16,6 +16,10 @@ public class FundTransferDAOImpl implements FundTransferDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	public FundTransferDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	@Transactional
 	public Account fundTransfer(Account account) {
 		sessionFactory.getCurrentSession().saveOrUpdate(account);
@@ -26,8 +30,13 @@ public class FundTransferDAOImpl implements FundTransferDAO {
 	public Account getAccount(String accountNo) {
 		Account account = new Account();
 		String hql = "from Account where accountNo=:accountNo";
-		Query<Account> query = sessionFactory.getCurrentSession().createQuery(hql).setParameter("accountNo", accountNo);
-		account = query.getSingleResult();
+		try {
+			Query<Account> query = sessionFactory.getCurrentSession().createQuery(hql).setParameter("accountNo",
+					accountNo);
+			account = query.getSingleResult();
+		} catch (Exception e) {
+			//e.printStackTrace();
+		}
 		return account;
 	}
 

@@ -1,9 +1,17 @@
 package com.our.model;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Account {
 
+	@Id
 	private String accountId;
 	private String accountNo;
 	private String ifsc;
@@ -11,8 +19,12 @@ public class Account {
 	private Date recordDate;
 	private String status;
 	private String balance;
-	private ATM atm;
-	private FundTransfer fundTransfer;
+	@OneToMany(mappedBy = "account")
+	private List<ATM> atm;
+	@OneToMany(mappedBy = "account")
+	private List<FundTransfer> fundTransfer;
+	@ManyToOne
+	private Customer customer;
 	private int isActive;
 
 	public String getAccountId() {
@@ -71,12 +83,28 @@ public class Account {
 		this.balance = balance;
 	}
 
-	public ATM getAtm() {
+	public List<ATM> getAtm() {
 		return atm;
 	}
 
-	public void setAtm(ATM atm) {
+	public void setAtm(List<ATM> atm) {
 		this.atm = atm;
+	}
+
+	public List<FundTransfer> getFundTransfer() {
+		return fundTransfer;
+	}
+
+	public void setFundTransfer(List<FundTransfer> fundTransfer) {
+		this.fundTransfer = fundTransfer;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public int getIsActive() {
@@ -85,14 +113,6 @@ public class Account {
 
 	public void setIsActive(int isActive) {
 		this.isActive = isActive;
-	}
-
-	public FundTransfer getFundTransfer() {
-		return fundTransfer;
-	}
-
-	public void setFundTransfer(FundTransfer fundTransfer) {
-		this.fundTransfer = fundTransfer;
 	}
 
 	@Override

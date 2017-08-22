@@ -26,12 +26,20 @@ public class FundTransferService {
 		try {
 			if (accountNo != null && amount != null) {
 				account = fundTransferDAO.getAccount(accountNo);
-				response = utility.checkAccountStatus(account.getStatus());
-				if (Constants.RESP_SUCCESS.equals(response.getErrorCode())) {
-					BigDecimal balance = new BigDecimal(account.getBalance());
-					balance.add(new BigDecimal(amount));
-					account.setBalance(String.valueOf(balance));
-					fundTransferDAO.fundTransfer(account);
+				if (account != null) {
+					response = utility.checkAccountStatus(account.getStatus());
+					if (Constants.RESP_SUCCESS.equals(response.getErrorCode())) {
+						BigDecimal balance = new BigDecimal(account.getBalance());
+						balance.add(new BigDecimal(amount));
+						account.setBalance(String.valueOf(balance));
+						fundTransferDAO.fundTransfer(account);
+					} // status error
+					else {
+
+					}
+				} // Account not exist
+				else {
+					response = utility.setResponse(Constants.Errors.ACCOUNT_NOT_EXIST);
 				}
 			}
 		} catch (Exception e) {

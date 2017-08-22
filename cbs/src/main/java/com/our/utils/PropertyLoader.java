@@ -20,12 +20,14 @@ public class PropertyLoader {
 			propertyMap.put(Constants.H2dbPassword, getDBConfigProps(Constants.H2dbPassword));
 			propertyMap.put(Constants.H2dbURL, getDBConfigProps(Constants.H2dbURL));
 			propertyMap.put(Constants.H2dbdriver, getDBConfigProps(Constants.H2dbdriver));
+			propertyMap.put(Constants.H2Dialect, getDBConfigProps(Constants.H2Dialect));
 
 			propertyMap.put(Constants.MySQLdbUsername, getDBConfigProps(Constants.MySQLdbUsername));
 			propertyMap.put(Constants.MySQLdbPassword, getDBConfigProps(Constants.MySQLdbPassword));
 			propertyMap.put(Constants.MySQLdbURL, getDBConfigProps(Constants.MySQLdbURL));
 			propertyMap.put(Constants.MySQLdbdriver, getDBConfigProps(Constants.MySQLdbdriver));
-
+			propertyMap.put(Constants.MySQLDialect, getDBConfigProps(Constants.MySQLDialect));
+			propertyMap.put(Constants.db, getDBConfigProps(Constants.db));
 			propertyMap.put(Constants.POOL_ACCOUNT, getConfigProps(Constants.POOL_ACCOUNT));
 
 		} catch (Exception e) {
