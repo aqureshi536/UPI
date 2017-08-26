@@ -31,11 +31,10 @@ public class FundTransferDAOImpl implements FundTransferDAO {
 		Account account = new Account();
 		String hql = "from Account where accountNo=:accountNo";
 		try {
-			Query<Account> query = sessionFactory.getCurrentSession().createQuery(hql).setParameter("accountNo",
-					accountNo);
+			Query<Account> query = sessionFactory.getCurrentSession().createQuery(hql).setParameter("accountNo", accountNo);
 			account = query.getSingleResult();
 		} catch (Exception e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 		}
 		return account;
 	}

@@ -26,6 +26,7 @@ public class Constants {
 	// Extras
 	public static final String configFile = "config.properties";
 	public static final String DBconfigFile = "DBconfig.properties";
+	public static final String ERROR_MAPPING_DOC = "cbsErrors.xml";
 
 	// Errors
 	public class Errors {
@@ -42,6 +43,13 @@ public class Constants {
 		public static final String ACCOUNT_LIMIT_EXCEEDED = "009";
 		public static final String ACCOUNT_NOT_EXIST = "010";
 
+	}
+
+	public class XML {
+		public static final String CBS_ERRORS = "cbsErrors";
+		public static final String CBS_ERROR = "error";
+		public static final String CBS_ERRORCODE_ATTR = "errorCode";
+		public static final String CBS_ERRORDESC_ATTR = "errorDesc";
 	}
 
 }

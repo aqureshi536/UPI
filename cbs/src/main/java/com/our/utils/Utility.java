@@ -11,6 +11,10 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,6 +29,8 @@ import com.our.response.Response;
 public class Utility {
 
 	private static String cUTF8 = "UTF-8";
+	private final String cbsErrorMappingStr = PropertyLoader.getInstance().getValue(Constants.ERROR_MAPPING_DOC);;
+
 	@Autowired
 	private ErrorDAO errorDAO;
 
@@ -56,7 +62,7 @@ public class Utility {
 			} else {
 				response.setStatusCode(Constants.STATUS_FAILURE);
 				response.setErrorCode(errorCode);
-				response.setErrorDesc(resolveErrorDescription(errorCode));
+				response.setErrorDesc(resolveErrorDescription(Constants.XML.CBS_ERRORCODE_ATTR, errorCode, Constants.XML.CBS_ERRORDESC_ATTR));
 			}
 		} catch (Exception e) {
 
@@ -65,13 +71,22 @@ public class Utility {
 
 	}
 
-	public String resolveErrorDescription(String errorCode) {
+	public String resolveErrorDescription(String checkAttr, String checkValue, String fetchAttr) {
 		String desc = "";
+		try {
+			Document doc = stringToXml(cbsErrorMappingStr);
+			XPathFactory xPathFactory = XPathFactory.newInstance();
+			XPath xPath = xPathFactory.newXPath();
+			XPathExpression expr = xPath.compile("//" + Constants.XML.CBS_ERRORS + "/" + Constants.XML.CBS_ERROR + "[@" + checkAttr + "='" + checkValue + "']/@" + fetchAttr);
+			desc = (String) expr.evaluate(doc.getDocumentElement(), XPathConstants.STRING);
+		} catch (Exception e) {
+
+		}
 
 		return desc;
 	}
 
-	public Document loadresourceXMl(String filename) throws Exception {
+	public Document loadresourceXML(String filename) throws Exception {
 		InputStream input = getClass().getClassLoader().getResourceAsStream(filename);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dbBuilder = dbFactory.newDocumentBuilder();
@@ -95,7 +110,7 @@ public class Utility {
 		return null;
 	}
 
-	public static String documentToString(Document doc) {
+	public  String documentToString(Document doc) {
 		String xmlString = "";
 
 		try {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbsErrors>
+	<error errorCode="001" errorDesc="Account Dormant"></error>
+	<error errorCode="002" errorDesc="Account Freezed"></error>
+	<error errorCode="003" errorDesc="Account with multiple names"></error>
+	<error errorCode="004" errorDesc="Account with multiple customer ids"></error>
+	<error errorCode="005" errorDesc="Insufficient Funds in customer account"></error>
+	<error errorCode="006" errorDesc="Transaction not permitted"></error>
+	<error errorCode="007" errorDesc="Account closed"></error>
+	<error errorCode="008" errorDesc="Account not found"></error>
+	<error errorCode="009" errorDesc="Transaction Limit Exceeded"></error>
+	<error errorCode="010" errorDesc="Account Does Not Exists" />
+	<error errorCode="" errorDesc=""></error>
+	<error errorCode="" errorDesc=""></error>
+	<error errorCode="999" errorDesc="Transaction failed"></error>
+</cbsErrors>

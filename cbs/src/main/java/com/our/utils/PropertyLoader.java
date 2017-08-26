@@ -7,11 +7,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.w3c.dom.Document;
+
 public class PropertyLoader {
 	private static PropertyLoader loader;
 	private Map<String, String> propertyMap;
 	private final Properties configproperties = loadPropertyFile(Constants.configFile);
 	private final Properties dBproperties = loadPropertyFile(Constants.DBconfigFile);
+
+	@Autowired
+	private Utility utility;
 
 	private PropertyLoader() {
 		try {
@@ -29,6 +35,9 @@ public class PropertyLoader {
 			propertyMap.put(Constants.MySQLDialect, getDBConfigProps(Constants.MySQLDialect));
 			propertyMap.put(Constants.db, getDBConfigProps(Constants.db));
 			propertyMap.put(Constants.POOL_ACCOUNT, getConfigProps(Constants.POOL_ACCOUNT));
+
+			Document errorMappingDoc = utility.loadresourceXML(Constants.ERROR_MAPPING_DOC);
+			propertyMap.put(Constants.ERROR_MAPPING_DOC, utility.documentToString(errorMappingDoc));
 
 		} catch (Exception e) {
 			e.printStackTrace();
